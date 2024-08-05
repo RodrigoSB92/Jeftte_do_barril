@@ -1,0 +1,52 @@
+import javax.swing.*;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // Dicionário com os preços dos itens
+        double[] precos = {0.0, 4.00, 4.50, 5.00, 2.00, 1.50};
+
+        // Scanner para entrada de dados
+        Scanner scanner = new Scanner(System.in);
+
+        // Entrada de dados
+        System.out.print("Digite o código do item: ");
+        int codigo = scanner.nextInt();
+        System.out.print("Digite a quantidade do item: ");
+        int quantidade = scanner.nextInt();
+
+        // Cálculo do valor total
+        double total = precos[codigo] * quantidade;
+
+        // Saída do valor total formatado com duas casas decimais
+        System.out.printf("Total: R$ %.2f%n", total);
+
+        // Exibir imagem do produto
+        mostrarImagemProduto(codigo);
+    }
+
+    public static void mostrarImagemProduto(int codigo) {
+        // Caminhos das imagens dos produtos
+        String[] imagens = {
+            "", // índice 0 não utilizado
+            "cachorro_quente.jpg",
+            "x_salada.jpg",
+            "x_bacon.jpg",
+            "torrada_simples.jpg",
+            "refrigerante.jpg"
+        };
+
+        // Criar um JFrame para exibir a imagem
+        JFrame frame = new JFrame("Imagem do Produto");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 300);
+
+        // Carregar a imagem correspondente ao código
+        ImageIcon icon = new ImageIcon(imagens[codigo]);
+        JLabel label = new JLabel(icon);
+
+        // Adicionar a imagem ao frame
+        frame.add(label);
+        frame.setVisible(true);
+    }
+}
